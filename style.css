@@ -715,6 +715,7 @@ main {
 
 .mention-ia {
   grid-column: 1 / -1;
+  text-align: center;
   font-size: 0.68rem;
   opacity: 0.7;
 }
