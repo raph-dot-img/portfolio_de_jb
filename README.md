@@ -28,5 +28,5 @@ python3 serve.py        # http://localhost:8080
 Serveur de développement uniquement : il reproduit les pages d'erreur, la page 418 et l'injection de l'adresse Formspree (lue dans `.env`), mais n'est pas fait pour la production.
 
 ## Licences
-Ce projet est distribué sous la licence **MIT**. Consultez le fichier [LICENSE](LICENSE) pour les détails.
+Ce projet est distribué sous la **Microsoft Reference Source License (Ms-RSL)** : le code peut être consulté, mais pas réutilisé, modifié ni redistribué. Consultez le fichier [LICENSE](LICENSE) pour les détails.
 Des licences de composants tiers sont utilisées par le projet (tels que les polices d'écriture). Voir [THIRD_PARTY_NOTICE.md](THIRD_PARTY_NOTICE.md) et la page [CGU.html](CGU.html).
