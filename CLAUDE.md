@@ -46,4 +46,4 @@ Le contenu vient de son CV : `assets/CV_Jean-Baptiste_CAIGNEC.pdf`. Tout le site
 
 ## Licences
 
-Code sous MIT (`LICENSE`), polices sous OFL (`THIRD_PARTY_NOTICE.md`). `CGU.html` reprend les deux textes : à mettre à jour si l'un change ou si un élément tiers est ajouté.
+Code sous Microsoft Reference Source License, Ms-RSL (`LICENSE`), polices sous OFL (`THIRD_PARTY_NOTICE.md`). `CGU.html` reprend les deux textes : à mettre à jour si l'un change ou si un élément tiers est ajouté.
