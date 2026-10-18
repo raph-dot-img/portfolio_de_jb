@@ -9,9 +9,11 @@ Site statique (HTML, CSS, JavaScript sans dépendance) servi par nginx dans Dock
 ```sh
 git clone https://github.com/raph-dot-img/portfolio_de_jb.git
 cd portfolio_de_jb
-cp .env.example .env   # puis remplir les valeurs (FRP + Formspree)
+cp .env.example .env   # puis remplir les valeurs (FRP + Formspree + langue)
 docker compose up -d
 ```
+
+- Le site existe en français et en anglais. La langue se choisit avec `WEB_UI_LANGUAGE=fr` ou `WEB_UI_LANGUAGE=en` dans le `.env` : **anglais par défaut**, y compris si la valeur est absente ou invalide. Les pages de chaque langue sont dans `fr/` et `en/`, le CSS, le script et les assets sont communs.
 
 - Le site répond en local sur `http://127.0.0.1:45888`.
 - `frpc` relaie le trafic en TCP vers le serveur FRP. Le HTTPS est géré en amont par Nginx Reverse Proxy, qui doit pointer `caignec.eu` (et `*.caignec.eu`) vers `FRP_SERVER_REMOTE_PORT` et transmettre l'en-tête `X-Forwarded-For`.
@@ -23,6 +25,7 @@ Après une modification d'un fichier du site : `docker compose restart portfolio
 
 ```sh
 python3 serve.py        # http://localhost:8080
+WEB_UI_LANGUAGE=fr python3 serve.py   # version française
 ```
 
 Serveur de développement uniquement : il reproduit les pages d'erreur, la page 418 et l'injection de l'adresse Formspree (lue dans `.env`), mais n'est pas fait pour la production.

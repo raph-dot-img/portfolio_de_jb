@@ -10,28 +10,33 @@ services:
     environment:
       # Injectée dans index.html par nginx (voir nginx/default.conf)
       FORMSPREE_ENDPOINT: ${FORMSPREE_ENDPOINT:?FORMSPREE_ENDPOINT manquant dans .env}
-      # Seule cette variable est remplacée dans le modèle de configuration
-      NGINX_ENVSUBST_FILTER: "^FORMSPREE_"
+      # Langue du site : fr ou en (anglais par défaut, et pour toute autre valeur)
+      WEB_UI_LANGUAGE: ${WEB_UI_LANGUAGE:-en}
+      # Seules ces variables sont remplacées dans le modèle de configuration
+      NGINX_ENVSUBST_FILTER: "^(FORMSPREE_ENDPOINT|WEB_UI_LANGUAGE)$$"
     volumes:
       # Configuration du serveur : monté comme *modèle*, l'image nginx le
-      # recopie dans conf.d/ au démarrage en y injectant FORMSPREE_ENDPOINT.
+      # recopie dans conf.d/ au démarrage en y injectant FORMSPREE_ENDPOINT
+      # et WEB_UI_LANGUAGE.
       - ./nginx/default.conf:/etc/nginx/templates/default.conf.template:ro
       # En-têtes de sécurité partagés, hors de conf.d/ : nginx inclut tout
       # ce dossier dans le bloc http, où ces directives n'auraient pas cours.
       - ./nginx/securite.conf:/etc/nginx/securite.conf:ro
-      # Fichiers du site, montés un par un pour ne rien exposer d'autre
+      # Pages HTML de chaque langue (index, confidentialité, CGU, erreurs) :
+      # nginx sert celles de WEB_UI_LANGUAGE. Une nouvelle page traduite se
+      # crée dans fr/ ET en/, puis se déclare dans nginx/default.conf et dans
+      # PAGES_TRADUITES (serve.py).
+      - ./fr:/usr/share/nginx/pages/fr:ro
+      - ./en:/usr/share/nginx/pages/en:ro
+      # Fichiers communs, montés un par un pour ne rien exposer d'autre
       # (.env, frp/, nginx/, serve.py... restent en dehors du conteneur).
-      # Toute nouvelle page se déclare ici ET dans RACINES_PUBLIQUES (serve.py).
-      - ./index.html:/usr/share/nginx/html/index.html:ro
-      - ./confidentialite.html:/usr/share/nginx/html/confidentialite.html:ro
-      - ./CGU.html:/usr/share/nginx/html/CGU.html:ro
+      # Tout nouveau fichier public se déclare ici ET dans RACINES_PUBLIQUES (serve.py).
       - ./LICENSE:/usr/share/nginx/html/LICENSE:ro
       - ./style.css:/usr/share/nginx/html/style.css:ro
       - ./script.js:/usr/share/nginx/html/script.js:ro
       - ./robots.txt:/usr/share/nginx/html/robots.txt:ro
       - ./sitemap.xml:/usr/share/nginx/html/sitemap.xml:ro
       - ./assets:/usr/share/nginx/html/assets:ro
-      - ./erreurs:/usr/share/nginx/html/erreurs:ro
       # Journal d'accès persistant, hors de la racine web
       - ./logs:/var/log/portfolio
 

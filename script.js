@@ -8,6 +8,11 @@ document.documentElement.classList.add("js");
 
 const mouvementReduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Langue de la page (WEB_UI_LANGUAGE côté serveur) : anglais sauf si la page
+// est en français.
+const LANGUE = document.documentElement.lang === "fr" ? "fr" : "en";
+const traduire = (textes) => textes[LANGUE];
+
 // Année du pied de page
 document.querySelectorAll(".annee").forEach((el) => {
   el.textContent = String(new Date().getFullYear());
@@ -64,12 +69,12 @@ if (formulaire) {
 
     // Adresse non injectée par nginx (serveur de dev sans .env, par exemple)
     if (!formulaire.action.startsWith("https://formspree.io/")) {
-      afficher("Le formulaire n'est pas encore configuré. Réessayez plus tard.", "erreur");
+      afficher(traduire({ fr: "Le formulaire n'est pas encore configuré. Réessayez plus tard.", en: "The form is not configured yet. Please try again later." }), "erreur");
       return;
     }
 
     bouton.disabled = true;
-    afficher("Transmission en cours…", "");
+    afficher(traduire({ fr: "Transmission en cours…", en: "Sending…" }), "");
 
     try {
       const reponse = await fetch(formulaire.action, {
@@ -80,12 +85,12 @@ if (formulaire) {
 
       if (reponse.ok) {
         formulaire.reset();
-        afficher("Message envoyé ! Je vous réponds dès que possible.", "ok");
+        afficher(traduire({ fr: "Message envoyé ! Je vous réponds dès que possible.", en: "Message sent! I will get back to you as soon as possible." }), "ok");
       } else {
-        afficher("L'envoi a échoué. Vérifiez les champs et réessayez.", "erreur");
+        afficher(traduire({ fr: "L'envoi a échoué. Vérifiez les champs et réessayez.", en: "Sending failed. Please check the fields and try again." }), "erreur");
       }
     } catch {
-      afficher("Connexion impossible. Réessayez dans un instant.", "erreur");
+      afficher(traduire({ fr: "Connexion impossible. Réessayez dans un instant.", en: "Unable to connect. Please try again in a moment." }), "erreur");
     } finally {
       bouton.disabled = false;
     }
@@ -100,15 +105,90 @@ if (formulaire) {
   const INVITE = "jb@caignec:~$";
   const net = (texte) => texte.replace(/\s+/g, " ").trim();
 
-  // Les fichiers reprennent le contenu des sections de la page.
-  const FICHIERS = {
-    "motivation.txt": "profil",
-    "formation.txt": "formation",
-    "experience.txt": "experience",
-    "competences.txt": "competences",
-    "langues.txt": "langues",
-    "contact.txt": "contact",
-  };
+  // Tous les textes du terminal, dans les deux langues du site
+  const T = traduire({
+    fr: {
+      // Les fichiers reprennent le contenu des sections de la page.
+      fichiers: {
+        "motivation.txt": "profil",
+        "formation.txt": "formation",
+        "experience.txt": "experience",
+        "competences.txt": "competences",
+        "langues.txt": "langues",
+        "contact.txt": "contact",
+      },
+      formulaireEnBas: "Le formulaire se trouve tout en bas de la page.",
+      age: /(\d+) ans/,
+      ans: " ans",
+      hote: "Hôte : Lycée Likès, Quimper",
+      inconnu: "inconnu",
+      paquets: "Paquets : ",
+      aide: [
+        "Commandes disponibles :",
+        "  help            affiche cette aide",
+        "  whoami          qui est derrière ce portfolio ?",
+        "  ls              liste les fichiers",
+        "  cat <fichier>   affiche le contenu d'un fichier",
+        "  rm <fichier>    supprime un fichier (et la section de la page)",
+        "  fastfetch       informations sur le système",
+        "  clear           efface l'écran",
+        "  shutdown        ferme le terminal (poweroff, exit... marchent aussi)",
+      ],
+      redemarrer: "Appuyez sur une touche pour redémarrer.",
+      suppression: (nom) => "rm: suppression de '" + nom + "'",
+      operandeManquant: (cmd) => cmd + " : opérande manquant",
+      introuvable: (cmd, nom) => cmd + ": " + nom + ": Aucun fichier ou dossier de ce nom",
+      dossier: (nom) => "rm: impossible de supprimer '" + nom + "': est un dossier",
+      impossible: (nom) => "rm: impossible de supprimer '" + nom + "': Aucun fichier ou dossier de ce nom",
+      wheel: "Vous n'êtes pas dans le groupe wheel. Cet incident sera signalé.",
+      arret: "Arrêt du système...",
+      commandeIntrouvable: (cmd) => "bash: " + cmd + " : commande introuvable",
+      fermer: "Fermer le terminal",
+      commande: "Commande",
+      bienvenue: "Bienvenue sur le terminal de Jean-Baptiste. Tapez help pour voir les commandes.",
+    },
+    en: {
+      fichiers: {
+        "motivation.txt": "profil",
+        "education.txt": "formation",
+        "experience.txt": "experience",
+        "skills.txt": "competences",
+        "languages.txt": "langues",
+        "contact.txt": "contact",
+      },
+      formulaireEnBas: "The form is at the very bottom of the page.",
+      age: /(\d+) years old/,
+      ans: " years",
+      hote: "Host : Lycée Likès, Quimper",
+      inconnu: "unknown",
+      paquets: "Packages : ",
+      aide: [
+        "Available commands:",
+        "  help            show this help",
+        "  whoami          who is behind this portfolio?",
+        "  ls              list files",
+        "  cat <file>      print a file",
+        "  rm <file>       delete a file (and the matching section of the page)",
+        "  fastfetch       system information",
+        "  clear           clear the screen",
+        "  shutdown        close the terminal (poweroff, exit... work too)",
+      ],
+      redemarrer: "Press any key to reboot.",
+      suppression: (nom) => "removed '" + nom + "'",
+      operandeManquant: (cmd) => cmd + ": missing operand",
+      introuvable: (cmd, nom) => cmd + ": " + nom + ": No such file or directory",
+      dossier: (nom) => "rm: cannot remove '" + nom + "': Is a directory",
+      impossible: (nom) => "rm: cannot remove '" + nom + "': No such file or directory",
+      wheel: "You are not in the wheel group. This incident will be reported.",
+      arret: "System is going down...",
+      commandeIntrouvable: (cmd) => "bash: " + cmd + ": command not found",
+      fermer: "Close the terminal",
+      commande: "Command",
+      bienvenue: "Welcome to Jean-Baptiste's terminal. Type help to see the commands.",
+    },
+  });
+
+  const FICHIERS = T.fichiers;
 
   const lireSection = (id) => {
     const section = document.getElementById(id);
@@ -133,7 +213,7 @@ if (formulaire) {
         lignes.push("- " + net(el.textContent));
       }
     });
-    if (id === "contact") lignes.push("Le formulaire se trouve tout en bas de la page.");
+    if (id === "contact") lignes.push(T.formulaireEnBas);
     return lignes.join("\n");
   };
 
@@ -146,15 +226,15 @@ if (formulaire) {
   ];
 
   const fastfetch = () => {
-    const age = (document.getElementById("profil")?.textContent.match(/(\d+) ans/) || [])[1];
+    const age = (document.getElementById("profil")?.textContent.match(T.age) || [])[1];
     const infos = [
       "jb@caignec",
       "----------",
       "OS : CIEL Linux (Bac Pro)",
-      "Hôte : Lycée Likès, Quimper",
-      "Uptime : " + (age ? age + " ans" : "inconnu"),
+      T.hote,
+      "Uptime : " + (age ? age + T.ans : T.inconnu),
       "Shell : jbsh",
-      "Paquets : " + Object.keys(FICHIERS).length + " (ls)",
+      T.paquets + Object.keys(FICHIERS).length + " (ls)",
     ];
     const bloc = document.createElement("span");
     bloc.className = "ascii";
@@ -167,17 +247,7 @@ if (formulaire) {
     return bloc;
   };
 
-  const AIDE = [
-    "Commandes disponibles :",
-    "  help            affiche cette aide",
-    "  whoami          qui est derrière ce portfolio ?",
-    "  ls              liste les fichiers",
-    "  cat <fichier>   affiche le contenu d'un fichier",
-    "  rm <fichier>    supprime un fichier (et la section de la page)",
-    "  fastfetch       informations sur le système",
-    "  clear           efface l'écran",
-    "  shutdown        ferme le terminal (poweroff, exit... marchent aussi)",
-  ].join("\n");
+  const AIDE = T.aide.join("\n");
 
   const FERMETURE = ["shutdown", "poweroff", "halt", "reboot", "exit", "logout"];
   const COMMANDES = ["help", "whoami", "ls", "cat", "rm", "fastfetch", "clear", "su", "sudo", ...FERMETURE];
@@ -228,7 +298,7 @@ if (formulaire) {
     "[   13.371561]  </TASK>",
     "[   13.371602] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000b00 ]---",
     "",
-    "Appuyez sur une touche pour redémarrer.",
+    T.redemarrer,
   ].join("\n");
 
   const paniquer = () => {
@@ -253,7 +323,7 @@ if (formulaire) {
       if (i < etapes.length) {
         const etape = etapes[i++];
         if (FICHIERS[etape]) supprimer(etape);
-        ecrire("rm: suppression de '" + etape + "'");
+        ecrire(T.suppression(etape));
         setTimeout(suivant, mouvementReduit ? 0 : 120);
       } else {
         setTimeout(paniquer, mouvementReduit ? 0 : 400);
@@ -288,11 +358,11 @@ if (formulaire) {
       liste.textContent = Object.keys(FICHIERS).join("  ");
       ecrire(liste);
     } else if (commande === "cat") {
-      if (!args.length) ecrire("cat : opérande manquant", "erreur-cmd");
+      if (!args.length) ecrire(T.operandeManquant("cat"), "erreur-cmd");
       args.forEach((nom) => {
         const fichier = trouverFichier(nom);
         if (fichier) ecrire(lireSection(FICHIERS[fichier]));
-        else ecrire("cat: " + nom + ": Aucun fichier ou dossier de ce nom", "erreur-cmd");
+        else ecrire(T.introuvable("cat", nom), "erreur-cmd");
       });
     } else if (commande === "rm") {
       const options = args.filter((a) => a.startsWith("-")).join("");
@@ -301,25 +371,25 @@ if (formulaire) {
         toutSupprimer();
         return;
       }
-      if (!cibles.length) ecrire("rm : opérande manquant", "erreur-cmd");
+      if (!cibles.length) ecrire(T.operandeManquant("rm"), "erreur-cmd");
       cibles.forEach((nom) => {
         const fichiers = nom === "*" || nom === "*.txt" ? Object.keys(FICHIERS) : [trouverFichier(nom)];
         if (fichiers[0]) fichiers.forEach(supprimer);
-        else if (nom === "/" || nom === "/*") ecrire("rm: impossible de supprimer '" + nom + "': est un dossier", "erreur-cmd");
-        else ecrire("rm: impossible de supprimer '" + nom + "': Aucun fichier ou dossier de ce nom", "erreur-cmd");
+        else if (nom === "/" || nom === "/*") ecrire(T.dossier(nom), "erreur-cmd");
+        else ecrire(T.impossible(nom), "erreur-cmd");
       });
     } else if (commande === "fastfetch" || commande === "neofetch") {
       ecrire(fastfetch());
     } else if (commande === "clear") {
       sortie.textContent = "";
     } else if (commande === "su" || commande === "sudo") {
-      ecrire("Vous n'êtes pas dans le groupe wheel. Cet incident sera signalé.", "erreur-cmd");
+      ecrire(T.wheel, "erreur-cmd");
     } else if (FERMETURE.includes(commande)) {
-      ecrire("Arrêt du système...");
+      ecrire(T.arret);
       saisie.disabled = true;
       setTimeout(fermer, mouvementReduit ? 0 : 600);
     } else {
-      ecrire("bash: " + commande + " : commande introuvable", "erreur-cmd");
+      ecrire(T.commandeIntrouvable(commande), "erreur-cmd");
     }
   };
 
@@ -356,7 +426,7 @@ if (formulaire) {
     const bouton = document.createElement("button");
     bouton.type = "button";
     bouton.className = "terminal-fermer";
-    bouton.setAttribute("aria-label", "Fermer le terminal");
+    bouton.setAttribute("aria-label", T.fermer);
     bouton.textContent = "×";
     bouton.addEventListener("click", fermer);
     barre.append(document.createElement("span"), document.createElement("span"), document.createElement("span"), titre, bouton);
@@ -377,7 +447,7 @@ if (formulaire) {
     saisie.autocomplete = "off";
     saisie.spellcheck = false;
     saisie.setAttribute("autocapitalize", "off");
-    saisie.setAttribute("aria-label", "Commande");
+    saisie.setAttribute("aria-label", T.commande);
     ligne.append(invite, saisie);
 
     corps.append(sortie, ligne);
@@ -420,7 +490,7 @@ if (formulaire) {
     if (!voile) construire();
     focusPrecedent = document.activeElement;
     sortie.textContent = "";
-    ecrire("Bienvenue sur le terminal de Jean-Baptiste. Tapez help pour voir les commandes.");
+    ecrire(T.bienvenue);
     saisie.disabled = false;
     saisie.value = "";
     position = historique.length;

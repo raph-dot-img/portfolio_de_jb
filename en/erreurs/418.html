@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>418 · I'm a teapot | Jean-Baptiste Caignec</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#08090d">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="page-erreur">
+  <main class="erreur">
+    <a class="logo" href="/" aria-label="Back to home"></a>
+    <p class="erreur-code glitch" data-text="418">418</p>
+    <h1>I'm a teapot</h1>
+    <p>Nice try, but stop that. This incident has been reported.</p>
+    <!-- The address is inserted by nginx (SSI) or by serve.py in development. -->
+    <p class="erreur-ip">Client: <strong><!--# echo var="remote_addr" default="unknown" --></strong></p>
+    <img class="chat" src="/assets/smug_cat.gif" alt="A white cat with a smug grin" width="310" height="280">
+    <a class="btn btn-primaire" href="/">Back to home</a>
+  </main>
+</body>
+</html>

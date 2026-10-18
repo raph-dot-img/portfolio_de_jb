@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy | Jean-Baptiste Caignec</title>
+<meta name="description" content="Privacy policy of Jean-Baptiste Caignec's website: no cookies, no trackers, contact form through Formspree.">
+<link rel="canonical" href="https://caignec.eu/confidentialite.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#08090d">
+<meta name="color-scheme" content="dark">
+<link rel="preload" href="/assets/polices/orbitron.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="page-texte">
+  <a class="lien-evitement" href="#contenu">Skip to content</a>
+
+  <header class="entete">
+    <div class="entete-interieur">
+      <a class="logo" href="/" aria-label="Jean-Baptiste Caignec, home"></a>
+      <div class="entete-actions">
+        <a class="btn btn-secondaire" href="/">Back to the site</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <h1>Privacy policy</h1>
+
+    <p class="chapo">
+      Short version: this website is a simple static page. It does not track you, does not set any
+      cookie and does not collect statistics. The only thing that really leaves your device is what you
+      write yourself in the contact form.
+    </p>
+
+    <section class="panneau panneau-large" aria-labelledby="titre-navigation">
+      <h2 id="titre-navigation"><span class="index">01</span> While browsing the site</h2>
+      <p>
+        The site is made of HTML, CSS and JavaScript files served as they are. There are no cookies,
+        no trackers, no audience measurement tools and no user accounts.
+      </p>
+      <p>
+        As with any website, the server hosting these files may keep technical logs containing your IP
+        address, the date of your visit, the requested page and your browser. This is how a web server
+        normally works: these logs are used for troubleshooting and security, and they are neither
+        exploited nor cross-referenced with anything else.
+      </p>
+      <p>
+        No external content is loaded from another domain: no Google fonts, no CDN, no social network
+        buttons. Nothing therefore tells a third party that you came here.
+      </p>
+
+      <h3>Where the site is hosted</h3>
+      <p>
+        The site is hosted at my home, in France. Traffic goes through a relay server (VPS) at
+        Kyun.sh, in Romania, which handles TLS termination before forwarding the request to my
+        personal server. Kyun.sh applies a "zero-access" policy to hosted data, but can technically
+        process requests in clear text while relaying them.
+      </p>
+      <p>
+        Kyun.sh therefore acts as a processor within the meaning of the GDPR, solely for routing the
+        requests. Romania being a member state of the European Union, no data leaves the EU at this
+        step, unlike the contact form described below.
+      </p>
+    </section>
+
+    <section class="panneau panneau-large" aria-labelledby="titre-formulaire">
+      <h2 id="titre-formulaire"><span class="index">02</span> If you use the contact form</h2>
+      <p>
+        The form is handled by <strong>Formspree</strong>, a third-party service that receives the message
+        and forwards it to me by email. I do not have any database on my side.
+      </p>
+
+      <h3>What is sent</h3>
+      <ul class="liste-competences">
+        <li>The name you enter</li>
+        <li>Your email address, so that I can reply to you</li>
+        <li>The content of your message</li>
+        <li>Technical data added by Formspree, including your IP address, used to filter spam</li>
+      </ul>
+
+      <h3>What I do with it</h3>
+      <p>
+        I only use this information to reply to you. I do not sell it, do not share it with anyone
+        and do not use it to send you anything you have not asked for.
+      </p>
+
+      <h3>Where it is stored</h3>
+      <p>
+        Messages you send go through Formspree's servers and remain stored in my account there, in
+        addition to arriving in my mailbox. Formspree is an American company and applies its own privacy
+        policy, which you can read on
+        <a href="https://formspree.io/legal/privacy-policy/" rel="noopener">formspree.io</a>.
+        If this is a problem for you, do not use the form.
+      </p>
+      <p class="encart">
+        <strong>Tip:</strong> only write in this form what is needed to get in touch. There is no
+        need to include sensitive or confidential information.
+      </p>
+    </section>
+
+    <section class="panneau panneau-large" aria-labelledby="titre-droits">
+      <h2 id="titre-droits"><span class="index">03</span> Your rights</h2>
+      <p>
+        Under the GDPR, you can ask to access, correct or delete the data concerning you. In practice,
+        this means the messages you sent me. Just ask through the form and I will delete the matching
+        entry on Formspree as well as the related email.
+        If you want to access or delete your connections to the server, send an email to my friend
+        who runs the Kyun server at <a href="mailto:webmaster@canevet.eu">webmaster@canevet.eu</a>, stating
+        the IP addresses used for the connection and the approximate time of your visit.
+      </p>
+      <p>Messages received are kept as long as the conversation requires, then deleted.</p>
+    </section>
+
+    <section class="panneau panneau-large" aria-labelledby="titre-modifications">
+      <h2 id="titre-modifications"><span class="index">04</span> Changes</h2>
+      <p>
+        If the site evolves and the way data is processed changes, this page will be updated.
+      </p>
+      <p class="legende"><strong>Last updated:</strong> <time datetime="2026-10-15">15 October 2026</time></p>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <p>© <span class="annee">2026</span> Jean-Baptiste Caignec &amp; Raphaël</p>
+    <a class="lien-source" href="https://github.com/raph-dot-img/portfolio_de_jb" rel="noopener">View the source code</a>
+    <nav aria-label="Legal links">
+      <a href="/confidentialite.html" aria-current="page">Privacy policy</a>
+      <a href="/CGU.html">Terms of use</a>
+    </nav>
+    <p class="mention-ia">AI was used for the design and the script</p>
+  </footer>
+</body>
+</html>
