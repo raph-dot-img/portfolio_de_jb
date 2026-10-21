@@ -3,6 +3,9 @@ services:
     image: nginx:alpine
     container_name: jbc_portfolio
     restart: unless-stopped
+    # Un processus du conteneur ne peut pas gagner de droits (setuid...)
+    security_opt:
+      - no-new-privileges:true
     ports:
       # Accès local uniquement (tests sur la machine). L'exposition publique
       # passe par frpc, qui joint nginx directement par le réseau Docker.
@@ -39,6 +42,8 @@ services:
     image: snowdreamtech/frpc:latest
     container_name: jbc_portfolio_frpc
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     depends_on:
       - portfolio
     volumes:
