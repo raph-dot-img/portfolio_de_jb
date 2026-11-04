@@ -29,6 +29,7 @@ Le contenu vient de son CV : `assets/CV_Jean-Baptiste_CAIGNEC.pdf`. Tout le site
 - `nginx/default.conf` est monté comme **modèle** (`/etc/nginx/templates/`) : l'image nginx y remplace `${FORMSPREE_ENDPOINT}` au démarrage (filtre `NGINX_ENVSUBST_FILTER`). nginx remplace ensuite `__FORMSPREE_ENDPOINT__` dans `index.html` via `sub_filter`.
 - La vraie IP du visiteur vient de `X-Forwarded-For` (module realip, adresses privées de confiance).
 - Les fichiers du site sont montés un par un. **Toute nouvelle page publique** doit être ajoutée dans les volumes de `docker-compose.yml` ET dans `RACINES_PUBLIQUES` de `serve.py`, et si besoin dans `sitemap.xml`.
+- Limite de débit par IP (`limit_req`, 10 req/s, rafale de 40 → page 429) et corps de requête limité à 1 Ko : le site ne reçoit aucun envoi. À relever si une page charge beaucoup plus de fichiers.
 - Le journal d'accès (`logs/acces.log`) contient les IP des visiteurs : à garder en tête pour la politique de confidentialité.
 
 ## Pages d'erreur et piège à scanners
