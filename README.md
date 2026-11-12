@@ -28,5 +28,7 @@ python3 serve.py        # http://localhost:8080
 Serveur de développement uniquement : il reproduit les pages d'erreur, la page 418 et l'injection de l'adresse Formspree (lue dans `.env`), mais n'est pas fait pour la production.
 
 ## Licences
-Ce projet est distribué sous la **Microsoft Reference Source License (Ms-RSL)** : le code peut être consulté, mais pas réutilisé, modifié ni redistribué. Consultez le fichier [LICENSE](LICENSE) pour les détails.
-Des licences de composants tiers sont utilisées par le projet (tels que les polices d'écriture). Voir [THIRD_PARTY_NOTICE.md](THIRD_PARTY_NOTICE.md) et la page [CGU.html](CGU.html).
+
+- **Le code est sous licence [MIT](LICENSE)** : vous pouvez le réutiliser, le modifier et le redistribuer librement, en gardant la mention de copyright.
+- **Le contenu personnel de Jean-Baptiste en est exclu** et reste tous droits réservés : CV, textes qui le présentent, politique de confidentialité, nom, coordonnées, logo. Ce sont en bonne partie des données personnelles : merci de ne pas les réutiliser. Si vous reprenez le code, remplacez tout ce contenu par le vôtre. Le détail est dans [NOTICE](NOTICE).
+- Les composants tiers gardent leurs propres licences : polices sous SIL Open Font License (voir [THIRD_PARTY_NOTICE.md](THIRD_PARTY_NOTICE.md)), GIF du chat, logiciels de déploiement. Tout est récapitulé sur la page [CGU.html](CGU.html).
