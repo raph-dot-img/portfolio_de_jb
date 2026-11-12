@@ -47,4 +47,6 @@ Le contenu vient de son CV : `assets/CV_Jean-Baptiste_CAIGNEC.pdf`. Tout le site
 
 ## Licences
 
-Code sous Microsoft Reference Source License, Ms-RSL (`LICENSE`), polices sous OFL (`THIRD_PARTY_NOTICE.md`). `CGU.html` reprend les deux textes : à mettre à jour si l'un change ou si un élément tiers est ajouté.
+Code sous licence MIT (`LICENSE`), polices sous OFL (`THIRD_PARTY_NOTICE.md`). Le contenu personnel de JB (CV, textes, coordonnées, logo, politique de confidentialité) est **exclu** de la MIT et reste tous droits réservés : le périmètre exact est dans `NOTICE`, servi en texte brut sur `/NOTICE` comme `/LICENSE`.
+
+`CGU.html` reprend les textes des licences et le périmètre de `NOTICE` : à mettre à jour si l'un change, si un élément tiers est ajouté ou si un nouveau fichier personnel (photo, document...) entre dans le dépôt.

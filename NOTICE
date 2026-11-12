@@ -1,0 +1,54 @@
+Ce que couvre la licence MIT de LICENSE, et ce qu'elle ne couvre pas
+====================================================================
+
+En bref : le code est libre de réutilisation. Le contenu personnel de
+Jean-Baptiste, lui, ne l'est pas.
+
+
+1. Couvert par la licence MIT (voir LICENSE)
+--------------------------------------------
+
+- Le code source du site : balisage HTML, CSS, JavaScript, configuration
+  nginx, Docker et FRP, serve.py.
+- Les textes génériques de l'interface (pages d'erreur, boutons, messages
+  du formulaire et du faux terminal).
+
+Vous pouvez les utiliser, copier, modifier et redistribuer, y compris à des
+fins commerciales, à condition de conserver la mention de copyright et le
+texte de LICENSE.
+
+
+2. NON couvert : le contenu personnel, tous droits réservés
+-----------------------------------------------------------
+
+Le contenu suivant concerne Jean-Baptiste Caignec. Il est exclu de la
+licence MIT et reste tous droits réservés :
+
+- assets/CV_Jean-Baptiste_CAIGNEC.pdf (son CV) ;
+- les textes des pages qui le présentent (présentation, formation,
+  compétences, projets, stages, coordonnées) et la politique de
+  confidentialité (confidentialite.html) ;
+- son nom, son identité, ses adresses mail et autres coordonnées, où
+  qu'ils apparaissent dans les fichiers (texte des pages, balises meta,
+  textes du script) ;
+- son logo (assets/logo_nobg.svg et assets/favicon.svg).
+
+Une bonne partie de ce contenu relève des données personnelles, protégées
+par le RGPD indépendamment de toute licence. Merci de ne pas les
+réutiliser, et de ne pas vous faire passer pour lui.
+
+Si vous réutilisez le code pour votre propre site, remplacez tout ce
+contenu par le vôtre avant de le publier. Le nom de domaine (caignec.eu)
+est propre à ce site : remplacez-le aussi.
+
+
+3. Éléments tiers : leurs propres conditions
+--------------------------------------------
+
+Ces fichiers ne viennent pas de nous et ne sont pas non plus couverts par
+la licence MIT :
+
+- assets/polices/ (Orbitron et Space Mono) est sous SIL Open Font
+  License 1.1, voir THIRD_PARTY_NOTICE.md ;
+- assets/smug_cat.gif est un mème qui circule sur Internet, dont les
+  droits restent à leurs auteurs : aucune licence n'est accordée ici.

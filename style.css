@@ -776,6 +776,11 @@ main {
   background: rgba(255, 232, 26, 0.05);
 }
 
+/* Les URL affichées en clair (crédits des polices) se coupent plutôt que de déborder sur mobile */
+.page-texte main a {
+  overflow-wrap: anywhere;
+}
+
 .texte-licence {
   margin: 1rem 0 0;
   padding: 1rem;

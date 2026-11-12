@@ -29,6 +29,7 @@ services:
       - ./confidentialite.html:/usr/share/nginx/html/confidentialite.html:ro
       - ./CGU.html:/usr/share/nginx/html/CGU.html:ro
       - ./LICENSE:/usr/share/nginx/html/LICENSE:ro
+      - ./NOTICE:/usr/share/nginx/html/NOTICE:ro
       - ./style.css:/usr/share/nginx/html/style.css:ro
       - ./script.js:/usr/share/nginx/html/script.js:ro
       - ./robots.txt:/usr/share/nginx/html/robots.txt:ro
